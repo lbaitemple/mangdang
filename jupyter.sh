@@ -12,6 +12,8 @@ date
 # install dependency
 sudo apt-get update
 sudo apt-get install -y python3-pip python3-setuptools curl libffi-dev
+curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt-get install -y nodejs
 
 # install jupyterlab
 sudo -H pip3 install jupyterlab
