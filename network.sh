@@ -4,6 +4,7 @@
 WIFI_SSID=LSSID
 WIFI_PSK=password123
 
+sudo nmcli con delete workshop
 sudo nmcli c add type wifi con-name workshop ifname wlan0 ssid ${WIFI_SSID}
 if [ ! -v "$WIFI_USER" ]; then
    # null or unset the user because personal wifi does not user username
