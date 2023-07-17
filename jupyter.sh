@@ -9,6 +9,19 @@ password='mangdang'
 # record script start time
 date
 
+# load screen
+sudo apt-get install python3-pip python3-pil  i2c-tools git -y
+sudo apt-get install libopenjp2-7 libtiff5 libatlas-base-dev -y
+git clone -b python3  https://github.com/lbaitemple/raspberry_IP/
+sudo pip3 install Adafruit_SSD1306 RPi.GPIO Adafruit_BBIO Pillow
+cp test2.sh ~/test2.sh
+cp stats.py ~/stats.py
+chmod +x ~/test2.sh
+sudo cp ipaddress.service /lib/systemd/system
+sudo systemctl daemon-reload
+sudo systemctl enable  ipaddress
+sudo systemctl start  ipaddress
+
 # install dependency
 sudo apt-get update
 sudo apt-get install -y python3-pip python3-setuptools curl libffi-dev
