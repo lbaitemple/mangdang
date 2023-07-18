@@ -43,5 +43,12 @@ sudo cp jupyter_lab.service /etc/systemd/system/jupyter_lab.service
 sudo systemctl enable jupyter_lab
 sudo systemctl start jupyter_lab
 
+# install mangdang bsp
+cd ~
+git clone https://github.com/mangdangroboticsclub/mini_pupper_bsp
+cd mini_pupper_bsp
+./install.sh
+cd Python_Module
+sudo python3 setup.py install
 # record script end time
 date
