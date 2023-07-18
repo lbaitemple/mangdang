@@ -12,7 +12,7 @@ date
 # load screen
 sudo apt-get install python3-pip python3-pil network-manager i2c-tools acl docker.io  default-jdk git -y
 sudo apt-get install libopenjp2-7 libtiff5 libatlas-base-dev -y
-sudo pip3 install Adafruit_SSD1306 RPi.GPIO Adafruit_BBIO Pillow
+sudo pip3 install Adafruit_SSD1306 RPi.GPIO Adafruit_BBIO Pillow notebook
 cp test2.sh ~/test2.sh
 cp stats.py ~/stats.py
 chmod +x ~/test2.sh
