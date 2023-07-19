@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-#WIFI_USER=lbai@temple.edu # comment it out if you are using non wpa-enterprise network
-WIFI_SSID=LSSID
+WIFI_USER=lbai@temple.edu # comment it out if you are using non wpa-enterprise network
+WIFI_SSID=eduroam
 WIFI_PSK=password123
 
 sudo nmcli con delete workshop
