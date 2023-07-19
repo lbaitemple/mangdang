@@ -14,3 +14,11 @@ network:
             optional: true
             addresses: [10.55.0.1/29]
     version: 2
+    wifis:
+      wlan0:
+        dhcp4: true
+        optional: true
+        access-points:
+          L5GLB_Ext:
+            password: frewrwrew
+
