@@ -6,7 +6,7 @@ WIFI_PSK=password123
 
 sudo nmcli con delete workshop
 sudo nmcli c add type wifi con-name workshop ifname wlan0 ssid ${WIFI_SSID}
-if [ ! -v "$WIFI_USER" ]; then
+if [ ! -n "${WIFI_USER+set}" ]; then
    # null or unset the user because personal wifi does not user username
    sudo nmcli con modify workshop wifi-sec.key-mgmt wpa-psk
    sudo nmcli con modify workshop wifi-sec.psk ${WIFI_PSK} 
