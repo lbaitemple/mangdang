@@ -40,3 +40,5 @@ bash ./install-ros.sh
 ### 5. INSTALL DOCKER
 wget https://raw.githubusercontent.com/aws-samples/robotics-boilerplate/main/install-docker.sh
 bash ./install-docker.sh
+
+apt install gazebo -y
