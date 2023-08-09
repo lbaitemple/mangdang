@@ -1,3 +1,8 @@
+# cloud9
+```
+cat cloud9-ubuntu-2204-ros2-humble-dcv.sh | sudo -E bash -
+```
+
 # mangdang
 
 ```
