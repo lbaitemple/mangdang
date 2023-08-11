@@ -31,7 +31,11 @@ sudo apt-get install -y nodejs
 sudo -H pip3 install jupyterlab
 sudo -H jupyter labextension install @jupyter-widgets/jupyterlab-manager
 jupyter lab --generate-config
-python3 -c "from notebook.auth.security import set_password; set_password('$password', '$HOME/.jupyter/jupyter_notebook_config.json')"
+#python3 -c "from notebook.auth.security import set_password; set_password('$password', '$HOME/.jupyter/jupyter_notebook_config.json')"
+#python3 -c "from jupyter_server.auth import passwd; print(passwd('YOUR_PASSWORD'))"
+PASS_HASH=$(python3 -c "from jupyter_server.auth import passwd; print(passwd('YOUR_PASSWORD'))")
+echo "c.ServerApp.password = '${PASS_HASH}'" >> $HOME/.jupyter/jupyter_lab_config.py
+echo "c.ServerApp.allow_remote_access = True" >> $HOME/.jupyter/jupyter_lab_config.py
 
 # set configuration
 echo "c.NotebookApp.token = ''" >> $HOME/.jupyter/jupyter_lab_config.py
