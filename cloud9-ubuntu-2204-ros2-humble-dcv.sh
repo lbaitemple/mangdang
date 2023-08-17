@@ -15,7 +15,7 @@ apt-get update && apt-get upgrade -y linux-aws && apt upgrade -y
 apt-get install -y python python-dev python-pip python3 python3-dev python3-pip python2.7
 
 # update_pip_and_boto
-pip3 install --upgrade pip boto3 botocore requests vcstool
+pip3 install --upgrade pip boto3 botocore requests 
 
 
 export ROSVERSION="ROS2Humble"
@@ -40,5 +40,5 @@ bash ./install-ros.sh
 ### 5. INSTALL DOCKER
 wget https://raw.githubusercontent.com/aws-samples/robotics-boilerplate/main/install-docker.sh
 bash ./install-docker.sh
-
+pip3 install --upgrade vcstool
 apt install gazebo -y
