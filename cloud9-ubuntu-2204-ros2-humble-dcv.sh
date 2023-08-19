@@ -21,8 +21,9 @@ pip3 install --upgrade pip boto3 botocore requests
 export ROSVERSION="ROS2Humble"
 export SIMULATORS="Gazebo"
 
-### 1. Resize Cloud9 Volume
-wget https://raw.githubusercontent.com/aws-samples/robotics-boilerplate/main/install-resize.sh
+### 1. Resize Cloud9 Volume to 40G
+# wget https://raw.githubusercontent.com/aws-samples/robotics-boilerplate/main/install-resize.sh
+wget https://raw.githubusercontent.com/lbaitemple/mangdang/main/install-resize.sh
 bash ./install-resize.sh
 
 ### 2. Install Desktop
