@@ -15,7 +15,7 @@ apt-get update && apt-get upgrade -y linux-aws && apt upgrade -y
 apt-get install -y python python-dev python-pip python3 python3-dev python3-pip python2.7
 
 # update_pip_and_boto
-pip3 install --upgrade pip boto3 botocore requests 
+pip3 install --upgrade pip boto3 botocore requests  
 
 
 export ROSVERSION="ROS2Humble"
