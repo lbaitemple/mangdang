@@ -45,4 +45,4 @@ pip3 install --upgrade vcstool
 apt install gazebo -y
 
 ### remove files
-rm *.sh
+rm -rf *.sh nice* 
