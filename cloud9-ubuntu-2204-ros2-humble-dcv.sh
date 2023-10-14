@@ -42,7 +42,7 @@ bash ./install-ros.sh
 wget https://raw.githubusercontent.com/aws-samples/robotics-boilerplate/main/install-docker.sh
 bash ./install-docker.sh
 pip3 install --upgrade vcstool
-apt install gazebo docker-compose -y
+apt install gazebo docker-compose python3-rosdep2 -y
 
 ### remove files
 rm -rf *.sh nice* 
