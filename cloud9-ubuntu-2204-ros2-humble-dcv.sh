@@ -12,7 +12,7 @@ apt-get update && apt-get upgrade -y linux-aws && apt upgrade -y
 
 
 # install_python_and_pip
-apt-get install -y python python-dev python-pip python3 python3-dev python3-pip python2.7
+apt-get install -y python python-dev python-pip python3 python3-dev python3-pip python2.7 
 
 # update_pip_and_boto
 pip3 install --upgrade pip boto3 botocore requests  
@@ -42,7 +42,7 @@ bash ./install-ros.sh
 wget https://raw.githubusercontent.com/aws-samples/robotics-boilerplate/main/install-docker.sh
 bash ./install-docker.sh
 pip3 install --upgrade vcstool
-apt install gazebo -y
+apt install gazebo docker-compose -y
 
 ### remove files
 rm -rf *.sh nice* 
