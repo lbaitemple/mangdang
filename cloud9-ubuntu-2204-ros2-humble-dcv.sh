@@ -43,3 +43,6 @@ wget https://raw.githubusercontent.com/aws-samples/robotics-boilerplate/main/ins
 bash ./install-docker.sh
 pip3 install --upgrade vcstool
 apt install gazebo -y
+
+### remove files
+rm *.sh
