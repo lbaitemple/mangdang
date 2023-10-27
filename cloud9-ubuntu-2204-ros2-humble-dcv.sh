@@ -41,7 +41,8 @@ bash ./install-ros.sh
 ### 5. INSTALL DOCKER
 wget https://raw.githubusercontent.com/aws-samples/robotics-boilerplate/main/install-docker.sh
 bash ./install-docker.sh
-pip3 install --upgrade vcstool
+pip3 install --upgrade vcstool 
+pip3 install setuptools==58.2.0
 apt install gazebo docker-compose python3-rosdep2 -y
 
 ### remove files
