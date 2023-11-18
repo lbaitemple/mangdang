@@ -1,5 +1,20 @@
 #!/bin/bash
 
+
+#wireless.txt content
+#export USEROAM=1
+#export ID=lbai@temple.edu
+#export HASH=1ff3e3e2sfdssds53e5c8c429
+#export AP=eduroam
+#export WIFI_AP1=L5GLB_Ext
+#export WIFI_AP1_PWD=fsfrweew
+#export WIFI_AP2=YYDS
+#export WIFI_AP2_PWD=rwerwe
+#export CURRENT_WIF_AP=YYDS
+#export CURREN_WIFI_PWD=chrisWifi
+#export ADD_WIFI_AP="YYDTS"
+#export ADD_WIFI_AP_PWD=erwrwecfs
+
 #FILE=/boot/firmware/wireless.txt
 #ACCESSFILE=/etc/netplan/50-cloud-init.yaml
 
