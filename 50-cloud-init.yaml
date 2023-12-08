@@ -14,10 +14,10 @@ network:
                 optional: true
                 dhcp4: true
                 access-points:
-                        "L5GLB_Ext":
-                                password: "password"
-                        "YYDS":
-                                password: "password"
+                        "WIFI_AP1":
+                                password: "WIFI_AP1_PWD"
+                        "WIFI_AP1":
+                                password: "WIFI_AP2_PWD"
                         tusecurewireless:
                                 auth:
                                    key-management: eap
