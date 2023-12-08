@@ -16,7 +16,7 @@ network:
                 access-points:
                         "WIFI_AP1":
                                 password: "WIFI_AP1_PWD"
-                        "WIFI_AP1":
+                        "WIFI_AP2":
                                 password: "WIFI_AP2_PWD"
                         tusecurewireless:
                                 auth:
