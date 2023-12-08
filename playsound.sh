@@ -8,6 +8,6 @@ sudo apt-get install gstreamer1.0 -y
 
 
 
-pip install pygobject playsound
+pip install pygobject playsound  pydub simpleaudio
 
 sudo apt-get install python3-qtpy -y
