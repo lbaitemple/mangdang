@@ -82,8 +82,8 @@ if test -f "$FILE"; then
     fi
     
     cp $ACCESSFILE.1 $ACCESSFILE 
-#    rm $FILE
-#    rm $ACCESSFILE.1
-#    systemctl restart systemd-networkd
+    rm $FILE
+    rm $ACCESSFILE.1
+    systemctl restart systemd-networkd
 fi
 
