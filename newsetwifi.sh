@@ -15,8 +15,8 @@
 #export ADD_WIFI_AP="YYDTS"
 #export ADD_WIFI_AP_PWD=erwrwecfs
 
-#FILE=/boot/firmware/wireless.txt
-#ACCESSFILE=/etc/netplan/50-cloud-init.yaml
+FILE=/boot/firmware/wireless.txt
+ACCESSFILE=/etc/netplan/50-cloud-init.yaml
 
 #FILE=wireless.txt
 #ACCESSFILE=50-cloud-init.yaml
