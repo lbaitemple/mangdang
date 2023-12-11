@@ -15,9 +15,9 @@ network:
                 dhcp4: true
                 access-points:
                         "WIFI_AP1":
-                                password: "WIFI_AP1_PWD"
+                                password: "password_ap1"
                         "WIFI_AP2":
-                                password: "WIFI_AP2_PWD"
+                                password: "password_ap2"
                         tusecurewireless:
                                 auth:
                                    key-management: eap
