@@ -4,7 +4,7 @@ Description=Jupyter Notebook Service
 [Service]
 Type=simple
 User=ubuntu
-ExecStart=/bin/sh -c "jupyter lab --ip=0.0.0.0 --no-browser"
+ExecStart=/bin/sh -c "jupyter lab --allow-root --NotebookApp.token='' --no-browser --ip=0.0.0.0"
 WorkingDirectory=/home/ubuntu
 Restart=always
 
