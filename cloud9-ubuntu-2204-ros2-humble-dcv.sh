@@ -45,5 +45,10 @@ pip3 install --upgrade vcstool
 pip3 install setuptools==58.2.0
 apt install gazebo docker-compose python3-rosdep2 -y
 
+### 6. install qemu
+apt-get update && sudo apt-get install -y --no-install-recommends qemu-user-static binfmt-support  docker-compose 
+update-binfmts --enable qemu-arm
+update-binfmts --display qemu-arm
+
 ### remove files
 rm -rf *.sh nice* 
