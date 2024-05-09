@@ -68,7 +68,28 @@ def dance():
     except Exception as e:
         # Log any exceptions
         logging.exception("An error occurred:")
-        
+
+
+def killdocker():
+
+    try:
+
+        container_id = get_container_ids_by_name('pupper-robot')
+        print(container_id)
+        cmd = ["docker", "rm",  "-f", container_id[0]]
+
+        p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        stdout, stderr = p.communicate()
+        p_status = p.wait()
+
+        if p_status != 0:
+            logging.error(f"Command '{cmd}' failed with return code {p_status}")
+            logging.error(stderr.decode())
+    except Exception as e:
+        # Log any exceptions
+        logging.exception("An error occurred:")
+
+
 # Use GPIO number but not PIN number
 GPIO.setmode(GPIO.BCM)
 
@@ -87,21 +108,26 @@ while True:
     display_sting = ''
     if not touchValue_Front:
         display_sting += ' Front'
-        playsound("/home/ubuntu/startup/bark.mp3")
     if not touchValue_Back:
-        display_sting += ' Back'
-        dance()
-        
+        display_sting += ' Back'        
     if not touchValue_Right:
-        display_sting += ' Right'
-        playsound("/home/ubuntu/startup/whining.mp3")
-        
+        display_sting += ' Right'      
     if not touchValue_Left:
-        playsound("/home/ubuntu/startup/growling.wav")
         display_sting += ' Left'
 
     if display_sting == '':
         display_sting = ''
+    elif display_sting == ' Front':
+        playsound("/home/ubuntu/startup/bark.mp3")
+    elif display_sting == ' Back':
+        dance()
+    elif display_sting == ' Right':
+        playsound("/home/ubuntu/startup/whining.mp3")
+    elif display_sting == ' Left':
+        playsound("/home/ubuntu/startup/growling.wav")
+    elif display_sting == ' Right Left':
+        playsound("/home/ubuntu/startup/bark.mp3")
+        killdocker()
     else:
         print(display_sting)
     time.sleep(0.5)
