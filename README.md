@@ -26,3 +26,14 @@ Now uncomment the last line of /etc/default/dnsmasq:
 # Uncommenting this line inhibits this behaviour.
 DNSMASQ_EXCEPT="lo"
 ```
+# play and record sound
+## play sound
+```
+aplay robot1.wav
+```
+
+## record sound (make sure the device id is the same as arecord -l
+```
+arecord -d 2 -f S16_LE -t wav -r 16000 -c 2 output.wav
+arecord -D plughw:1,0 -d 5 -f S16_LE -t wav -r 16000 -c 2 output.wav
+```
