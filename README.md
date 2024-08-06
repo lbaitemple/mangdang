@@ -27,6 +27,12 @@ Now uncomment the last line of /etc/default/dnsmasq:
 DNSMASQ_EXCEPT="lo"
 ```
 # play and record sound
+```
+chmod +x create_asound_conf.sh
+./create_asound_conf.sh
+sudo alsa force-reload
+```
+
 ## play sound
 ```
 aplay robot1.wav
