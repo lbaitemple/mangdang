@@ -3,11 +3,11 @@
 
 # Detect playback device
 playback_device=$(aplay -l | grep -m 1 '^card' | awk '{print $2}' | sed 's/://')
-playback_subdevice=$(aplay -l | grep -m 1 '^card' | awk '{print $6}')
+playback_subdevice=$(aplay -l | grep -m 1 '^card' | awk '{print $7}' | sed 's/://')
 
 # Detect capture device
 capture_device=$(arecord -l | grep -m 1 '^card' | awk '{print $2}' | sed 's/://')
-capture_subdevice=$(arecord -l | grep -m 1 '^card' | awk '{print $6}')
+capture_subdevice=$(arecord -l | grep -m 1 '^card' | awk '{print $6}'| sed 's/://') 
 
 # Create asound.conf file
 cat <<EOL > ~/.asoundrc
