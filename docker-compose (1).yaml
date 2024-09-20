@@ -1,0 +1,17 @@
+version: "3"
+services:
+  greengrass_minipupper_image:
+    build: 
+        context: ./
+    image: ros-humble-greengrass-minipupper:latest
+    
+  pupper-robot:
+    image: ros-humble-greengrass-minipupper:latest
+    command: ros2 launch mini_pupper_driver docker_display_interface.launch.py
+    privileged: true
+    user: root
+    volumes:
+      - /dev/video0:/dev/video0
+      - /tmp/esp32-proxy.socket:/tmp/esp32-proxy.socket
+      - /dev:/dev
+      - /sys:/sys
