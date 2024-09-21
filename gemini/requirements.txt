@@ -9,3 +9,5 @@ google-cloud-texttospeech
 google-cloud-speech
 langchain
 langchain-google-vertexai
+ipywidgets
+opencv-python
