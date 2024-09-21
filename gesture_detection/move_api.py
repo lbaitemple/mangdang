@@ -16,6 +16,10 @@
 # Description: This script is designed to control a robot by sending various commands through UDP communication to simulate
 # joystick inputs. It includes functions for different robot movements and an interactive command-line interface to issue these commands.
 #
+# Movement Test Method: Type the following commands and press enter: 'init', 'lower', 'raise', 'left roll', 'right roll', 'trot',
+# 'trot1', 'squat', 'forward', 'backward', 'left', 'right', 'look up', 'look down', 'loow left', 'look upper left', 'look lower left',
+# 'look right', 'look upper right', 'look lower right'
+#
 
 import logging
 import os
@@ -26,7 +30,7 @@ import threading
 import copy
 
 sys.path.append("..")
-from api.UDPComms import Publisher
+from UDPComms import Publisher
 
 
 fake_joy = Publisher(8830, "127.0.0.1")
@@ -83,6 +87,71 @@ def init_movement():
     msg_raise = {**_MSG, "dpady": 1}
     send_msgs([MSG_L1_TRUE, MSG_L1_FALSE, msg_raise])
 
+# Active pupyy, send command to do lower movement
+def lower_body(duration=2):
+    """
+    Make the robot lower its body.
+
+    Parameters:
+    - duration (float): The duration of the movement.
+    """
+    start_msg = {**_MSG, "dpady": -1}
+    stop_msg = {**_MSG, "dpady": 0.8}
+    num = int(duration / UPDATE_INTERVAL)
+    reduction_count = num // 2
+    msgs = [start_msg] * (num - reduction_count)
+    stop_msgs = [stop_msg] * reduction_count
+    msgs.extend(stop_msgs)
+    send_msgs(msgs)
+
+def raise_body(duration=2):
+    """
+    Make the robot raise its body.
+
+    Parameters:
+    - duration (float): The duration of the movement.
+    """
+    start_msg = {**_MSG, "dpady": 1}
+    stop_msg = {**_MSG, "dpady": -0.8}
+    num = int(duration / UPDATE_INTERVAL)
+    reduction_count = num // 2
+    msgs = [start_msg] * (num - reduction_count)
+    stop_msgs = [stop_msg] * reduction_count
+    msgs.extend(stop_msgs)
+    send_msgs(msgs)
+
+def left_body(duration=2):
+    """
+    Make the robot twist left its body.
+
+    Parameters:
+    - duration (float): The duration of the movement.
+    """
+    start_msg = {**_MSG, "dpadx": -1}
+    stop_msg = {**_MSG, "dpadx": 0.8}
+    num = int(duration / UPDATE_INTERVAL)
+    reduction_count = num // 2
+    msgs = [start_msg] * (num - reduction_count)
+    stop_msgs = [stop_msg] * reduction_count
+    msgs.extend(stop_msgs)
+    send_msgs(msgs)
+
+def right_body(duration=2):
+    """
+    Make the robot twist right its body.
+
+    Parameters:
+    - duration (float): The duration of the movement.
+    """
+    start_msg = {**_MSG, "dpadx": 1}
+    stop_msg = {**_MSG, "dpadx": -0.8}
+    num = int(duration / UPDATE_INTERVAL)
+    reduction_count = num // 2
+    msgs = [start_msg] * (num - reduction_count)
+    stop_msgs = [stop_msg] * reduction_count
+    msgs.extend(stop_msgs)
+    send_msgs(msgs)
+
 def trot():
     """
     Make the robot start trot.
@@ -108,6 +177,22 @@ def trot_duration(duration=1):
     thread = threading.Thread(target=delay_trot, args=(duration,))
     thread.start()
 
+def squat(duration=4):
+    """
+    Make the robot squat.
+
+    Parameters:
+    - duration (float): The duration of the movement.
+    """
+    start_msg = {**_MSG, "ry": 1.0}
+    stop_msg = {**_MSG, "ry": 0.0}
+    num = int(duration / UPDATE_INTERVAL)
+    reduction_count = num // 2
+    msgs = [start_msg] * (num - reduction_count)
+    stop_msgs = [stop_msg] * reduction_count
+    msgs.extend(stop_msgs)
+    send_msgs(msgs)
+
 def move_forward(duration=2):
     """
     Make the robot move forward.
@@ -119,8 +204,74 @@ def move_forward(duration=2):
     msg_trot_release = {**_MSG, "R1": False}
     start_msg = {**_MSG, "ly": 1.0}
     stop_msg = {**_MSG, "ly": 0.0}
-   
-    return msg_trot_press, msg_trot_release, start_msg, stop_msg
+    msgs = [msg_trot_press, msg_trot_release]
+    num = int(duration / UPDATE_INTERVAL)
+    start_msgs = [start_msg] * num
+    msgs.extend(start_msgs)
+    msgs.append(stop_msg)
+    msgs.append(msg_trot_press)
+    msgs.append(msg_trot_release)
+    send_msgs(msgs)
+
+def move_backward(duration=2):
+    """
+    Make the robot move backward.
+
+    Parameters:
+    - duration (float): The duration of the movement.
+    """
+    msg_trot_press = {**_MSG, "R1": True}
+    msg_trot_release = {**_MSG, "R1": False}
+    start_msg = {**_MSG, "ly": -1.0}
+    stop_msg = {**_MSG, "ly": 0.0}
+    msgs = [msg_trot_press, msg_trot_release]
+    num = int(duration / UPDATE_INTERVAL)
+    start_msgs = [start_msg] * num
+    msgs.extend(start_msgs)
+    msgs.append(stop_msg)
+    msgs.append(msg_trot_press)
+    msgs.append(msg_trot_release)
+    send_msgs(msgs)
+
+def move_left(duration=2):
+    """
+    Make the robot move left.
+
+    Parameters:
+    - duration (float): The duration of the movement.
+    """
+    msg_trot_press = {**_MSG, "R1": True}
+    msg_trot_release = {**_MSG, "R1": False}
+    start_msg = {**_MSG, "lx": -0.5}
+    stop_msg = {**_MSG, "ly": 0.0}
+    msgs = [msg_trot_press, msg_trot_release]
+    num = int(duration / UPDATE_INTERVAL)
+    start_msgs = [start_msg] * num
+    msgs.extend(start_msgs)
+    msgs.append(stop_msg)
+    msgs.append(msg_trot_press)
+    msgs.append(msg_trot_release)
+    send_msgs(msgs)
+
+def move_right(duration=2):
+    """
+    Make the robot move right.
+
+    Parameters:
+    - duration (float): The duration of the movement.
+    """
+    msg_trot_press = {**_MSG, "R1": True}
+    msg_trot_release = {**_MSG, "R1": False}
+    start_msg = {**_MSG, "lx": 0.5}
+    stop_msg = {**_MSG, "ly": 0.0}
+    msgs = [msg_trot_press, msg_trot_release]
+    num = int(duration / UPDATE_INTERVAL)
+    start_msgs = [start_msg] * num
+    msgs.extend(start_msgs)
+    msgs.append(stop_msg)
+    msgs.append(msg_trot_press)
+    msgs.append(msg_trot_release)
+    send_msgs(msgs)
 
 def look_up(duration=2):
     """
@@ -131,10 +282,12 @@ def look_up(duration=2):
     """
     start_msg = {**_MSG, "ry": 1.0}
     stop_msg = {**_MSG, "ry": 0.0}
-    msg_trot_press = {**_MSG, "R1": True}
-    msg_trot_release = {**_MSG, "R1": False}
-   
-    return msg_trot_press, msg_trot_release, start_msg, stop_msg
+    num = int(duration / UPDATE_INTERVAL)
+    reduction_count = num // 2
+    msgs = [start_msg] * (num - reduction_count)
+    stop_msgs = [stop_msg] * reduction_count
+    msgs.extend(stop_msgs)
+    send_msgs(msgs)
 
 def look_down(duration=2):
     """
@@ -145,10 +298,12 @@ def look_down(duration=2):
     """
     start_msg = {**_MSG, "ry": -1.0}
     stop_msg = {**_MSG, "ry": 0.0}
-    msg_trot_press = {**_MSG, "R1": True}
-    msg_trot_release = {**_MSG, "R1": False}
-    
-    return msg_trot_press, msg_trot_release, start_msg, stop_msg
+    num = int(duration / UPDATE_INTERVAL)
+    reduction_count = num // 2
+    msgs = [start_msg] * (num - reduction_count)
+    stop_msgs = [stop_msg] * reduction_count
+    msgs.extend(stop_msgs)
+    send_msgs(msgs)
 
 def look_left(duration=2):
     """
@@ -157,12 +312,46 @@ def look_left(duration=2):
     Parameters:
     - duration (float): The duration of the movement.
     """
-    start_msg = {**_MSG, "rx": -1.0}
+    start_msg = {**_MSG, "rx": -0.3}
     stop_msg = {**_MSG, "rx": 0.0}
-    msg_trot_press = {**_MSG, "R1": True}
-    msg_trot_release = {**_MSG, "R1": False}
+    num = int(duration / UPDATE_INTERVAL)
+    reduction_count = num // 2
+    msgs = [start_msg] * (num - reduction_count)
+    stop_msgs = [stop_msg] * reduction_count
+    msgs.extend(stop_msgs)
+    send_msgs(msgs)
 
-    return msg_trot_press, msg_trot_release, start_msg, stop_msg
+def look_upperleft(duration=2):
+    """
+    Make the robot look upper left.
+
+    Parameters:
+    - duration (float): The duration of the movement.
+    """
+    start_msg = {**_MSG, "rx": -0.6, "ry": 1.0}
+    stop_msg = {**_MSG, "rx": 0.0, "ry": 0.0}
+    num = int(duration / UPDATE_INTERVAL)
+    reduction_count = num // 2
+    msgs = [start_msg] * (num - reduction_count)
+    stop_msgs = [stop_msg] * reduction_count
+    msgs.extend(stop_msgs)
+    send_msgs(msgs)
+
+def look_leftlower(duration=2):
+    """
+    Make the robot look left lower.
+
+    Parameters:
+    - duration (float): The duration of the movement.
+    """
+    start_msg = {**_MSG, "rx": -0.6, "ry": -1.0}
+    stop_msg = {**_MSG, "rx": 0.0, "ry": 0.0}
+    num = int(duration / UPDATE_INTERVAL)
+    reduction_count = num // 2
+    msgs = [start_msg] * (num - reduction_count)
+    stop_msgs = [stop_msg] * reduction_count
+    msgs.extend(stop_msgs)
+    send_msgs(msgs)
 
 def look_right(duration=2):
     """
@@ -171,9 +360,114 @@ def look_right(duration=2):
     Parameters:
     - duration (float): The duration of the movement.
     """
-    start_msg = {**_MSG, "rx": 1.0}
+    start_msg = {**_MSG, "rx": 0.3}
     stop_msg = {**_MSG, "rx": 0.0}
-    msg_trot_press = {**_MSG, "R1": True}
-    msg_trot_release = {**_MSG, "R1": False}
+    num = int(duration / UPDATE_INTERVAL)
+    reduction_count = num // 2
+    msgs = [start_msg] * (num - reduction_count)
+    stop_msgs = [stop_msg] * reduction_count
+    msgs.extend(stop_msgs)
+    send_msgs(msgs)
 
-    return msg_trot_press, msg_trot_release, start_msg, stop_msg
+def look_upperright(duration=2):
+    """
+    Make the robot look upper right.
+
+    Parameters:
+    - duration (float): The duration of the movement.
+    """
+    start_msg = {**_MSG, "rx": 0.6, "ry": 1.0}
+    stop_msg = {**_MSG, "rx": 0.0, "ry": 0.0}
+    num = int(duration / UPDATE_INTERVAL)
+    reduction_count = num // 2
+    msgs = [start_msg] * (num - reduction_count)
+    stop_msgs = [stop_msg] * reduction_count
+    msgs.extend(stop_msgs)
+    send_msgs(msgs)
+
+def look_rightlower(duration=2):
+    """
+    Make the robot look right lower.
+
+    Parameters:
+    - duration (float): The duration of the movement.
+    """
+    start_msg = {**_MSG, "rx": 0.6, "ry": -1.0}
+    stop_msg = {**_MSG, "rx": 0.0, "ry": 0.0}
+    num = int(duration / UPDATE_INTERVAL)
+    reduction_count = num // 2
+    msgs = [start_msg] * (num - reduction_count)
+    stop_msgs = [stop_msg] * reduction_count
+    msgs.extend(stop_msgs)
+    send_msgs(msgs)
+
+import argparse
+async def main(args):
+    # Setup logging
+    logging.basicConfig(
+        format='%(asctime)s - %(name)s - %(levelname)s - [%(filename)s:%(funcName)s:%(lineno)d] - %(message)s',
+        level=logging.INFO
+    )
+
+    current_file_path = os.path.abspath(__file__)
+    os.chdir(os.path.dirname(current_file_path))
+    logging.debug(f"init chdir: {os.path.dirname(current_file_path)}")
+
+    logging.debug("logging setup!\n")
+    #init_movement()
+    move_api_map = {
+        "init": init_movement,
+        "lower": lower_body,
+        "raise": raise_body,
+        "left roll": left_body,
+        "right roll": right_body,
+        "trot": trot,
+        "trot1": trot_duration,
+        "squat": squat,
+        "forward": move_forward,
+        "backward": move_backward,
+        "left": move_left,
+        "right": move_right,
+        # "bow": bow,
+        "look up": look_up,
+        "look down": look_down,
+        "look left": look_left,
+        "look upper left": look_upperleft,
+        "look lower left": look_leftlower,
+        "look right": look_right,
+        "look upper right": look_upperright,
+        "look lower right": look_rightlower,
+    }
+    async_move_api_map = {
+        #"trot": trot,
+        #"trot1": trot_for_1sec,
+    }
+
+    if args.api:
+        func = move_api_map[args.api]
+        func()
+        sys.exit()
+
+    while True:
+        user_input = input("Enter a command (or 'exit' to quit): ")
+        if user_input == "exit":
+            break
+        elif user_input in async_move_api_map:
+            logging.info(f"{user_input} start:")
+            await async_move_api_map[user_input]()
+            logging.info(f"{user_input} end:")
+        elif user_input in move_api_map:
+            logging.info(f"{user_input} start:")
+            move_api_map[user_input]()
+            logging.info(f"{user_input} end:")
+        else:
+            user_input = "init"
+            move_api_map[user_input]()
+            print("Unknown command. Please try again.")
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Execute move api.')
+    parser.add_argument('--api', type=str, help='Execute the move api without interactive prompt.')
+
+    args = parser.parse_args()
+    asyncio.run(main(args))
