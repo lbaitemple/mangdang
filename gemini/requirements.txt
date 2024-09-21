@@ -11,4 +11,3 @@ langchain
 langchain-google-vertexai
 ipywidgets
 opencv-python
-google-cloud-aiplatform
