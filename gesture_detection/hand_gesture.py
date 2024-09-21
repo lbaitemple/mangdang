@@ -29,7 +29,8 @@ import time
 import threading
 
 sys.path.append("..")
-from api import move_api
+#from api 
+import move_api
 from MangDang.LCD.ST7789 import ST7789
 
 labels_dict = {0: 'come', 1: 'stop', 2: 'look up', 3: 'look down', 4: 'look right', 5: 'look left', 6: 'quit'}
