@@ -2,7 +2,7 @@
 sudo apt-get update 
 
 # install deps
-sudo apt-get install ca-certificates curl gnupg lsb-release 
+sudo apt-get install ca-certificates curl gnupg lsb-release -y
 
 # import gpg
 sudo mkdir -p /etc/apt/keyrings 
@@ -14,7 +14,7 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.
 sudo apt-get update 
 
 # install docker
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin 
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
 
 # start docker service
 sudo service docker start 
