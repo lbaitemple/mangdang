@@ -23,8 +23,7 @@ sudo groupadd docker
 
 sudo usermod -aG docker $USER 
 
-content="[boot]
-command=\"service docker start\""
-
- echo "$content" | sudo tee -a /etc/wsl.conf > /dev/null
+#content="[boot]
+#command=\"service docker start\""
+#echo "$content" | sudo tee -a /etc/wsl.conf > /dev/null
 
