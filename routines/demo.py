@@ -42,7 +42,7 @@ dance_commands = [
 'look_right:-0.3:0.5',
 
 'look_down:0.3:0.5', 
-'look_left:0:.3:0.5',
+'look_left:0.3:0.5',
 'look_up:-0.3:0.5',
 'look_right:-0.3:0.5',
 'music:off:'
