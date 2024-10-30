@@ -16,6 +16,7 @@ interval_time = 0.6 # seconds
 # stay: the robot will keep the last command
 dance_commands = [
 'music:on:robot0.mp3',
+'volume:on:100',
 'move_forward:0.3:0.5',
 'stop:0.0:0.5',
 'look_down:0.3:0.5', 
