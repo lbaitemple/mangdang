@@ -4,7 +4,7 @@
 interval_time = 0.6 # seconds
 
 # there are 10 commands you can choose:
-# move_forward: the robot will move forward
+# move_forward: the robot will move forward, the second argument is distance and third argument is duration.
 # move_backward: the robot will move backward
 # move_left: the robot will move to the left
 # move_right: the robot will move to the right
