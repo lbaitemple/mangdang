@@ -3,7 +3,7 @@
 # the duration of every command
 interval_time = 0.6 # seconds
 
-# there are 10 commands you can choose:
+# there are 12 commands you can choose:
 # move_forward: the robot will move forward, the second argument is distance and third argument is duration.
 # move_backward: the robot will move backward
 # move_left: the robot will move to the left
@@ -14,6 +14,8 @@ interval_time = 0.6 # seconds
 # look_right: the robot will look right
 # stop: the robot will stop the last command and return to the default standing posture
 # stay: the robot will keep the last command
+# music: on with music file name, off to turn off the music
+# volume: on with volume level 0-100
 dance_commands = [
 'music:on:robot0.mp3',
 'volume:on:100',
