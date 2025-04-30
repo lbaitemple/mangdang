@@ -48,7 +48,8 @@ if test -f "$FILE"; then
    fi
    cp $ACCESSFILE.1 $ACCESSFILE 
    rm $FILE
-   rm $ACCESSFILE.1 $ACCESSFILE.bak
+   rm $ACCESSFILE.1 
+   #$ACCESSFILE.bak
    systemctl restart systemd-networkd
 fi
 
