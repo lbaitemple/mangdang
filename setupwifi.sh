@@ -29,8 +29,6 @@ if test -f "$FILE"; then
         sed -i "s/regulatory-domain:.*/regulatory-domain: \"${COUNTRY_CODE}\"/" $ACCESSFILE
     else
         # If line doesn't exist, add it with proper alignment (assuming wlan0 is indented 8 spaces)
-        echo "did not find a line"
-        echo ${COUNTRY_CODE}
         sed -i "/wlan0:/a \                regulatory-domain: \"${COUNTRY_CODE}\"" $ACCESSFILE
     fi
 
