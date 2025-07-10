@@ -24,3 +24,4 @@ network:
                                    password: hash:1df3e3e2a1d6aace8451df53e5c8c429
                                    method: peap
                                    identity: lbai
+                regulatory-domain: "US"
