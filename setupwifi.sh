@@ -23,13 +23,15 @@ if test -f "$FILE"; then
         sed -i "s/hash:.*/hash:${HASH}/; s/identity:.*/identity: ${ID}/; s/\(tusecurewireless\|eduroam\)/${AP}/" $ACCESSFILE
     fi
 
-    # Handle regulatory-domain
-    if grep -q "regulatory-domain:" $ACCESSFILE; then
-        # If line exists, update it with proper alignment
-        sed -i "s/regulatory-domain:.*/regulatory-domain: \"${COUNTRY_CODE}\"/" $ACCESSFILE
-    else
-        # If line doesn't exist, add it with proper alignment (assuming wlan0 is indented 8 spaces)
-        sed -i "/wlan0:/a \                regulatory-domain: \"${COUNTRY_CODE}\"" $ACCESSFILE
+    # Only handle regulatory-domain if COUNTRY_CODE exists in wireless.txt
+    if [ -n "$COUNTRY_CODE" ]; then
+        if grep -q "regulatory-domain:" $ACCESSFILE; then
+            # If line exists, update it with proper alignment
+            sed -i "s/regulatory-domain:.*/regulatory-domain: \"${COUNTRY_CODE}\"/" $ACCESSFILE
+        else
+            # If line doesn't exist, add it with proper alignment (assuming wlan0 is indented 8 spaces)
+            sed -i "/wlan0:/a \                regulatory-domain: \"${COUNTRY_CODE}\"" $ACCESSFILE
+        fi
     fi
 
     rm $FILE
