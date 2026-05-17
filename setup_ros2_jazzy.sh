@@ -1,4 +1,3 @@
-```bash
 #!/bin/bash
 
 set -e
@@ -72,4 +71,4 @@ echo "======================================"
 echo "Test with:"
 echo "source /opt/ros/jazzy/setup.bash"
 echo "ros2 topic list"
-```
+
