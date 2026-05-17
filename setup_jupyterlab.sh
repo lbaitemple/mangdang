@@ -52,7 +52,7 @@ EOF
 echo "==> Creating systemd service at $SERVICE_FILE"
 
 # Find absolute path to jupyter-lab (pip-installed binaries usually live in /usr/local/bin)
-JUPYTER_LAB_BIN=$(command -v jupyter-lab || echo "/usr/local/bin/jupyter-lab")
+JUPYTER_LAB_BIN=$(command -v jupyter-lab || echo "/home/ubuntu.local/bin/jupyter-lab")
 
 sudo tee "$SERVICE_FILE" > /dev/null <<EOF
 [Unit]
